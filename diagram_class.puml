@@ -1,0 +1,115 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Hero <.. Hero
+abstract class Hero {
+# name : string
+
+# health : int
+# damage : int
+
+# Hero(name : string, health : int, damage : int)
+
++ getName() : string
++ getHealth() : int
++ getDamage() : int
+
++ {abstract} Attack(enemy : Hero) : void
+}
+
+abstract IMagician {
+# mana : int
+
+# IMagician()
+
++ getMana() : int
+}
+
+abstract IWarrior {
+# power : int
+
+IWarrior()
+
++ getPower() : int
+}
+
+Hero <|-- Dwarf
+abstract class Dwarf {
+- {static} HEALTH : int
+- {static} DAMAGE : int
+
+# Dwarf(name : string)
+}
+
+Hero <|-- Elf
+abstract class Elf {
+- {static} HEALTH : int
+- {static} DAMAGE : int
+
+# Elf(name : string)
+}
+
+Dwarf <|-- DwarfMagician
+IMagician <|.. DwarfMagician
+class DwarfMagician {
+- {static} MANA : int
+
++ DwarfMagician(name : string)
+
++ Attack(enemy : Hero) : void
+}
+
+Dwarf <|-- DwarfWarrior
+IWarrior <|.. DwarfWarrior
+class DwarfWarrior {
+- {static} POWER : int
+
++ DwarfWarrior(name : string)
+
++ Attack(enemy : Hero) : void
+}
+
+Elf <|-- ElfMagician
+IMagician <|.. ElfMagician
+class ElfMagician {
+- {static} MANA : int
+
++ ElfMagician(name : string)
+
++ Attack(enemy : Hero) : void
+}
+
+Elf <|-- ElfWarrior
+IWarrior <|.. ElfWarrior
+class ElfWarrior {
+- {static} POWER : int
+
++ ElfWarrior(name : string)
+
++ Attack(enemy : Hero) : void
+}
+
+Dwarf <.. AbstractFactory
+Elf <.. AbstractFactory
+abstract class AbstractFactory{
++ {abstract} createDwarf(name : string) : Dwarf
++ {abstract} createElf(name : string) : Elf
+}
+
+AbstractFactory <|-- MagicianFactory
+DwarfMagician <.. MagicianFactory
+ElfMagician <.. MagicianFactory
+class MagicianFactory {
++ createDwarf(name : string) : DwarfMagician
++ createElf(name : string) : ElfMagician
+}
+
+AbstractFactory <|-- WarriorFactory
+DwarfWarrior <.. WarriorFactory
+ElfWarrior <.. WarriorFactory
+class WarriorFactory {
++ createDwarf(name : string) : DwarfWarrior
++ createElf(name : string) : ElfWarrior
+}
+
+@enduml
