@@ -4,6 +4,7 @@
 #include <string>
 
 #include "HeroTypes.h"
+#include "../Items/Bag.h"
 
 using namespace std;
 
@@ -17,13 +18,17 @@ protected:
     HeroType type;
     HeroSpecialization specialization;
 
+    Bag* bag;
+
 public:
     Hero(const string &name, int health, int damage, HeroType type, HeroSpecialization specialization) : name(name),
                                                                                                          health(health),
                                                                                                          damage(damage),
                                                                                                          type(type),
                                                                                                          specialization(
-                                                                                                                 specialization) {}
+                                                                                                                 specialization) {
+        bag = new Bag();
+    }
 
 public:
     const string &getName() const {

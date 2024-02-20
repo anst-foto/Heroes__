@@ -17,4 +17,8 @@ add_executable(Heroes main.cpp
         Factories/MagicianFactory.h
         Factories/WarriorFactory.h
         Game.h
-        Heroes/HeroTypes.h)
+        Heroes/HeroTypes.h
+        Items/Bag.h
+        Items/AbstractItem.h
+        Items/Sword.h
+        Items/Rom.h)
